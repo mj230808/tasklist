@@ -1,0 +1,152 @@
+body {
+  background-color: #f4f7f6;
+  color: #4a4a4a;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.todo-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.task-input {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #4a4a4a;
+  outline: none;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.task-input:focus {
+  border-color: #8e44ad;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px 20px;
+  background-color: #8e44ad;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #732d91;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  color: #4a4a4a;
+  font-size: 1em;
+  cursor: grab;
+}
+
+.task-item.dragging {
+  opacity: 0.5;
+}
+
+.task-item .task-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-item .task-text {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.task-item:first-of-type .task-text {
+  font-size: 1.2em;
+  color: #e74c3c;
+}
+
+.task-item .task-timer {
+  font-size: 0.9em;
+  color: #8e44ad;
+}
+
+.task-item .task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.task-item button {
+  font-size: 0.8em;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.task-item .start-task {
+  background-color: #27ae60;
+  color: white;
+}
+
+.task-item .start-task:hover {
+  background-color: #1e8449;
+}
+
+.task-item .done-task {
+  background-color: #2980b9;
+  color: white;
+}
+
+.task-item .done-task:hover {
+  background-color: #1c5980;
+}
+
+.task-item .stop-task {
+  background-color: #f39c12;
+  color: white;
+}
+
+.task-item .stop-task:hover {
+  background-color: #e67e22;
+}

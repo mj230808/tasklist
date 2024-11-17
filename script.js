@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (taskCount >= MAX_TASKS) {
       taskInput.disabled = true;
       addTaskButton.disabled = true;
-      taskInput.placeholder = 'Max tasks reached';
+      taskInput.placeholder = 'Focus only on 5 tasks!';
     } else {
       taskInput.disabled = false;
       addTaskButton.disabled = false;

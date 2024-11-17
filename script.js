@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       taskInput.disabled = false;
       addTaskButton.disabled = false;
-      taskInput.placeholder = 'Enter a task';
+      taskInput.placeholder = 'Enter your task';
     }
   }
 

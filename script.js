@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const elapsedTime = parseInt(listItem.querySelector('.task-timer').dataset.elapsedTime, 10);
       const minutes = Math.floor(elapsedTime / 60);
       const seconds = elapsedTime % 60;
-      alert(`Congratulations, you have finished "${taskText}"! And it only took ${minutes} minutes and ${seconds} seconds.`);
+      alert(`Congratulations, you have finished ${taskText}! And it only took ${minutes} minutes and ${seconds} seconds!`);
       listItem.remove();
       activeTask = null;
       document.querySelectorAll('.task-item').forEach(item => item.classList.remove('disabled'));

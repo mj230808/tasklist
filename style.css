@@ -1,7 +1,7 @@
 body {
   background-color: #f4f7f6;
   color: #4a4a4a;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Georgia', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,6 +35,7 @@ body {
 }
 
 .task-input {
+  font-family: 'Georgia', sans-serif;
   padding: 10px;
   font-size: 1em;
   border: 1px solid #dcdcdc;
@@ -51,6 +52,7 @@ body {
 }
 
 .button {
+  font-family: 'Georgia', sans-serif;
   font-size: 1em;
   padding: 10px 20px;
   background-color: #8e44ad;
@@ -72,6 +74,7 @@ body {
 }
 
 .task-item {
+  font-family: 'Georgia', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;

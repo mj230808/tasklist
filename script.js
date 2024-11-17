@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const taskList = document.getElementById('taskList');
   const MAX_TASKS = 5;
 
+  let activeTask = null;
+
   function updateTaskLimit() {
     const taskCount = document.querySelectorAll('.task-item').length;
     if (taskCount >= MAX_TASKS) {
@@ -31,11 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
 
     taskItem.dataset.timerInterval = interval;
+    taskItem.querySelector('.start-task').textContent = 'Pause';
   }
 
   function stopTimer(taskItem) {
     const interval = taskItem.dataset.timerInterval;
     clearInterval(interval);
+    taskItem.querySelector('.start-task').textContent = 'Start';
   }
 
   function addTask() {
@@ -60,20 +64,37 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="task-actions">
         <button class="start-task">Start</button>
-        <button class="stop-task">Stop</button>
         <button class="done-task">Done</button>
       </div>
     `;
 
-    listItem.querySelector('.start-task').addEventListener('click', () => startTimer(listItem));
-    listItem.querySelector('.stop-task').addEventListener('click', () => stopTimer(listItem));
+    listItem.querySelector('.start-task').addEventListener('click', () => {
+      if (activeTask && activeTask !== listItem) {
+        return alert('Please pause or complete the current task first.');
+      }
+
+      if (listItem.querySelector('.start-task').textContent === 'Start') {
+        activeTask = listItem;
+        startTimer(listItem);
+        document.querySelectorAll('.task-item:not(.completed):not([draggable="false"])').forEach(item => {
+          if (item !== listItem) item.classList.add('disabled');
+        });
+      } else {
+        stopTimer(listItem);
+        activeTask = null;
+        document.querySelectorAll('.task-item').forEach(item => item.classList.remove('disabled'));
+      }
+    });
+
     listItem.querySelector('.done-task').addEventListener('click', () => {
       stopTimer(listItem);
       const elapsedTime = parseInt(listItem.querySelector('.task-timer').dataset.elapsedTime, 10);
       const minutes = Math.floor(elapsedTime / 60);
       const seconds = elapsedTime % 60;
-      alert(`Congratulations, you have finished "${taskText}" with ${minutes} minutes and ${seconds} seconds.`);
+      alert(`Congratulations, you have finished "${taskText}" in ${minutes} minutes and ${seconds} seconds.`);
       listItem.remove();
+      activeTask = null;
+      document.querySelectorAll('.task-item').forEach(item => item.classList.remove('disabled'));
       updateTaskLimit();
     });
 
@@ -84,9 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function makeListDraggable() {
-    const taskItems = document.querySelectorAll('.task-item');
+    const taskItems = document.querySelectorAll('.task-item:not(.completed)');
 
-    taskItems.forEach((item) => {
+    taskItems.forEach(item => {
       item.addEventListener('dragstart', () => {
         item.classList.add('dragging');
       });
@@ -96,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    taskList.addEventListener('dragover', (e) => {
+    taskList.addEventListener('dragover', e => {
       e.preventDefault();
       const draggingItem = document.querySelector('.dragging');
       const afterElement = getDragAfterElement(taskList, e.clientY);
@@ -124,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addTaskButton.addEventListener('click', addTask);
 
-  taskInput.addEventListener('keypress', (e) => {
+  taskInput.addEventListener('keypress', e => {
     if (e.key === 'Enter') {
       addTask();
     }

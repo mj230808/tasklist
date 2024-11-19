@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       taskInput.disabled = false;
       addTaskButton.disabled = false;
-      taskInput.placeholder = 'Enter your task';
+      taskInput.placeholder = 'Enter the task to focus on. No more than 5!';
     }
   }
 
